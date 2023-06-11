@@ -50,7 +50,7 @@ def init_model(model, checkpoint, device):
         config = 'configs/common/model.py'
         cfg = LazyConfig.load(config)
         model = instantiate(cfg.model)
-        model.to('cuda')
+        model.to(device)
         model.eval()
         DetectionCheckpointer(model).load(checkpoint)
     elif model == 'vitmatte-b':
@@ -60,7 +60,7 @@ def init_model(model, checkpoint, device):
         cfg.model.backbone.num_heads = 12
         cfg.model.decoder.in_chans = 768
         model = instantiate(cfg.model)
-        model.to('cuda')
+        model.to(device)
         model.eval()
         DetectionCheckpointer(model).load(checkpoint)
     return model
@@ -90,7 +90,7 @@ if __name__ == '__main__':
     parser.add_argument('--image-dir', type=str, default='demo/boy_rgb.png')
     parser.add_argument('--trimap-dir', type=str, default='demo/boy_trimap.png')
     parser.add_argument('--output-dir', type=str, default='demo/result.png')
-    parser.add_argument('--device', type=str, default='cuda')
+    parser.add_argument('--device', type=str, default=device)
 
     args = parser.parse_args()
 
