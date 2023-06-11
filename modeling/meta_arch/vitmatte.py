@@ -39,6 +39,10 @@ class ViTMatte(nn.Module):
         images, targets, H, W = self.preprocess_inputs(batched_inputs)
 
         features = self.backbone(images)
+
+        print("Shape of backbone features:", features.shape)
+        print("First values:", features[0,0,:3,:3])
+
         outputs = self.decoder(features, images)  
 
         if self.training:
