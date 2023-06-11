@@ -211,13 +211,17 @@ class Block(nn.Module):
         """
         super().__init__()
         self.norm1 = norm_layer(dim)
+
+        input_size = input_size if window_size == 0 else (window_size, window_size)
+        print("input_size", input_size)
+
         self.attn = Attention(
             dim,
             num_heads=num_heads,
             qkv_bias=qkv_bias,
             use_rel_pos=use_rel_pos,
             rel_pos_zero_init=rel_pos_zero_init,
-            input_size=input_size if window_size == 0 else (window_size, window_size),
+            input_size=input_size,
         )
 
         self.drop_path = DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
