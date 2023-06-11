@@ -90,7 +90,7 @@ if __name__ == '__main__':
     parser.add_argument('--image-dir', type=str, default='demo/boy_rgb.png')
     parser.add_argument('--trimap-dir', type=str, default='demo/boy_trimap.png')
     parser.add_argument('--output-dir', type=str, default='demo/result.png')
-    parser.add_argument('--device', type=str, default=device)
+    parser.add_argument('--device', type=str, default="cuda")
 
     args = parser.parse_args()
 
