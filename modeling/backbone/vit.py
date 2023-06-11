@@ -400,8 +400,17 @@ class ViT(Backbone):
                 self.pos_embed, self.pretrain_use_cls_token, (x.shape[1], x.shape[2])
             )
 
-        for blk in self.blocks:
+        for i, blk in enumerate(self.blocks):
+
+            if i == 0:
+                print("Shape of x before layer 0:", x.shape)
+                print("First values of x before layer 0:", x[0, 0, :3, :3])
+
             x = blk(x)
+
+            if i == 0:
+                print("Shape of x after layer 0:", x.shape)
+                print("First values of x after layer 0:", x[0, 0, :3, :3])
 
         outputs = {self._out_features[0]: x.permute(0, 3, 1, 2)}
 

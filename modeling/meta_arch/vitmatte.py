@@ -38,16 +38,16 @@ class ViTMatte(nn.Module):
     def forward(self, batched_inputs):
         images, targets, H, W = self.preprocess_inputs(batched_inputs)
 
-        torch.save(images, 'images.pt')
+        # torch.save(images, 'images.pt')
 
-        from huggingface_hub import HfApi
-        api = HfApi()
-        api.upload_file(
-            path_or_fileobj="images.pt",
-            path_in_repo="images.pt",
-            repo_id="nielsr/vitmatte-dummy-data",
-            repo_type="dataset",
-        )
+        # from huggingface_hub import HfApi
+        # api = HfApi()
+        # api.upload_file(
+        #     path_or_fileobj="images.pt",
+        #     path_in_repo="images.pt",
+        #     repo_id="nielsr/vitmatte-dummy-data",
+        #     repo_type="dataset",
+        # )
 
         features = self.backbone(images)
 
