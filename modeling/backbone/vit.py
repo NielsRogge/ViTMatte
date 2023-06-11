@@ -402,15 +402,14 @@ class ViT(Backbone):
 
         for i, blk in enumerate(self.blocks):
 
-            if i == 2:
-                print("Shape of x before layer 2:", x.shape)
-                print("First values of x before layer 2:", x[0, 0, :3, :3])
+            # if i == 2:
+            #     print("Shape of x before layer 2:", x.shape)
+            #     print("First values of x before layer 2:", x[0, 0, :3, :3])
 
             x = blk(x)
 
-            if i == 2:
-                print("Shape of x after layer 2:", x.shape)
-                print("First values of x after layer 2:", x[0, 0, :3, :3])
+            print(f"Shape of x after layer {i}:", x.shape)
+            print(f"First values of x after layer {i}:", x[0, 0, :3, :3])
 
         outputs = {self._out_features[0]: x.permute(0, 3, 1, 2)}
 
