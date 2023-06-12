@@ -49,6 +49,8 @@ class ViTMatte(nn.Module):
         #     repo_type="dataset",
         # )
 
+        print("Shape of images:", images.shape)
+
         features = self.backbone(images)
 
         print("Shape of backbone features:", features.shape)
