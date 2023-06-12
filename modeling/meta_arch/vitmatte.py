@@ -64,6 +64,10 @@ class ViTMatte(nn.Module):
             losses = self.criterion(sample_map ,outputs, targets)               
             return losses
         else:
+
+            print("Shape of phas:", outputs['phas'].shape)
+            print("First values of phas:", outputs['phas'][0,0,:3,:3])
+
             outputs['phas'] = outputs['phas'][:,:,:H,:W]
             return outputs
 

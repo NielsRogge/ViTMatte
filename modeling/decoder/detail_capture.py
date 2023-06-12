@@ -137,4 +137,6 @@ class Detail_Capture(nn.Module):
         
         phas = torch.sigmoid(self.matting_head(features))
 
+        print("Shape of phas: ", phas.shape)
+
         return {'phas': phas}
